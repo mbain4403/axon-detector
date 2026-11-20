@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Axon Detector</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <div class="title">AXON DETECTOR</div>
+  <div class="subtitle">Passive Bluetooth awareness &middot; nothing is stored</div>
+</header>
+
+<nav class="tabs">
+  <button id="tabDetector" class="tab active" type="button">Detector</button>
+  <button id="tabMap" class="tab" type="button">Camera Map</button>
+</nav>
+
+<main>
+  <!-- ============ DETECTOR ============ -->
+  <section id="viewDetector">
+    <div class="ring-wrap">
+      <div id="ring" class="ring standby">
+        <div id="ringText" class="ring-text">STANDBY</div>
+        <div id="ringSub" class="ring-sub">scanner idle</div>
+      </div>
+    </div>
+
+    <div id="alertBox" class="alert-box hidden"></div>
+    <div id="crashBox" class="crash-box hidden"></div>
+
+    <div class="controls">
+      <button id="scanBtn" class="btn primary" type="button">Start scanning</button>
+      <button id="permBtn" class="btn hidden" type="button">Enable Bluetooth access</button>
+      <button id="btBtn" class="btn hidden" type="button">Turn on Bluetooth</button>
+    </div>
+
+    <div id="hits" class="hits"></div>
+    <div id="hitsEmpty" class="empty">No Axon signals right now. The scanner listens for Axon body cameras, Tasers, and Fleet units by their public Bluetooth signatures.</div>
+
+    <div class="notes">
+      <p><strong>How it works:</strong> Axon gear broadcasts Bluetooth signals that identify the maker. This app listens passively &mdash; it never connects to, pairs with, or transmits to any device.</p>
+      <p><strong>Range is rough:</strong> signal strength gives a ballpark band, not a distance. Walls, vehicles, and pockets weaken signals a lot. Treat &ldquo;near&rdquo; as &ldquo;somewhere around you,&rdquo; never an exact spot.</p>
+      <p><strong>Privacy:</strong> signals are matched in memory on your phone only. No device IDs are stored, logged, or sent anywhere. The list clears itself seconds after a signal is gone.</p>
+      <p><strong>Limits:</strong> scanning runs while the app is open. Android pauses some matching when the screen sleeps. Not every officer or patrol car carries detectable gear, and an Axon hit can also be a holster or vehicle unit.</p>
+    </div>
+  </section>
+
+  <!-- ============ CAMERA MAP ============ -->
+  <section id="viewMap" class="hidden">
+    <div class="map-toolbar">
+      <input id="camSearch" type="search" placeholder="Search cameras by town or operator" />
+    </div>
+    <div id="map" class="map">
+      <div id="mapTiles" class="map-layer"></div>
+      <div id="mapMarks" class="map-layer"></div>
+      <div class="map-zoom">
+        <button id="zoomIn" type="button">+</button>
+        <button id="zoomOut" type="button">&minus;</button>
+        <button id="nearMe" type="button" title="Center on me">&#9673;</button>
+      </div>
+      <div id="mapMsg" class="map-msg hidden"></div>
+    </div>
+    <div id="camInfo" class="cam-info hidden"></div>
+    <div class="map-legend">
+      <span><span class="dot flock"></span> Flock Safety confirmed</span>
+      <span><span class="dot other"></span> Other plate reader</span>
+      <span><span class="dot me"></span> You</span>
+    </div>
+    <div id="camList" class="cam-list"></div>
+    <div class="notes">
+      <p>Camera data: OpenStreetMap contributors (ODbL), pulled October 30, 2026 &mdash; 230 plate readers across the Capital District, southern Adirondacks, and Mohawk Valley (200 Flock-confirmed). Coverage is regional, not statewide. Map tiles &copy; OpenStreetMap contributors.</p>
+    </div>
+  </section>
+</main>
+
+<script src="cameras.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Build output and signing material — never commit the keystore.
+build/
+*.keystore
+source/gen/
+source/res/
